@@ -1,0 +1,68 @@
+ERROR - 2024-10-20 21:42:00 --> Error connecting to the database: mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php:186
+Stack trace:
+#0 C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php(186): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'sinapptic', 3306, '', 0)
+#1 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\backend\system\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT `ID_MODU...', Array, false)
+#4 C:\xampp\htdocs\backend\system\Model.php(919): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\backend\app\Models\sinapptic\moduloModel.php(24): CodeIgniter\Model->__call('get', Array)
+#6 C:\xampp\htdocs\backend\app\Controllers\sinapptic\ModuloController.php(28): App\Models\sinapptic\moduloModel->listarModulos_componentes()
+#7 C:\xampp\htdocs\backend\system\CodeIgniter.php(933): App\Controllers\sinapptic\ModuloController->listModules_Components()
+#8 C:\xampp\htdocs\backend\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\sinapptic\ModuloController))
+#9 C:\xampp\htdocs\backend\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\backend\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\backend\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\backend\system\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT `ID_MODU...', Array, false)
+#3 C:\xampp\htdocs\backend\system\Model.php(919): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\backend\app\Models\sinapptic\moduloModel.php(24): CodeIgniter\Model->__call('get', Array)
+#5 C:\xampp\htdocs\backend\app\Controllers\sinapptic\ModuloController.php(28): App\Models\sinapptic\moduloModel->listarModulos_componentes()
+#6 C:\xampp\htdocs\backend\system\CodeIgniter.php(933): App\Controllers\sinapptic\ModuloController->listModules_Components()
+#7 C:\xampp\htdocs\backend\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\sinapptic\ModuloController))
+#8 C:\xampp\htdocs\backend\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\backend\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\backend\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2024-10-20 21:42:00 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+[Method: GET, Route: modulos/modulos_componentes]
+in SYSTEMPATH\Database\BaseConnection.php on line 457.
+ 1 SYSTEMPATH\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT `ID_MODULO`, `TITULO`, `ICONO`
+FROM `modulo`', [], false)
+ 3 SYSTEMPATH\Model.php(919): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Models\sinapptic\moduloModel.php(24): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH\Controllers\sinapptic\ModuloController.php(28): App\Models\sinapptic\moduloModel->listarModulos_componentes()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\sinapptic\ModuloController->listModules_Components()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\sinapptic\ModuloController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-20 21:58:12 --> ErrorException: Array to string conversion
+[Method: GET, Route: modulos/modulos_componentes]
+in APPPATH\Controllers\sinapptic\ModuloController.php on line 40.
+ 1 APPPATH\Controllers\sinapptic\ModuloController.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\backend\\app\\Controllers\\sinapptic\\ModuloController.php', 40)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\sinapptic\ModuloController->listModules_Components()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\sinapptic\ModuloController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-20 21:58:32 --> ErrorException: Array to string conversion
+[Method: GET, Route: modulos/modulos_componentes]
+in APPPATH\Controllers\sinapptic\ModuloController.php on line 40.
+ 1 APPPATH\Controllers\sinapptic\ModuloController.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\backend\\app\\Controllers\\sinapptic\\ModuloController.php', 40)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\sinapptic\ModuloController->listModules_Components()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\sinapptic\ModuloController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

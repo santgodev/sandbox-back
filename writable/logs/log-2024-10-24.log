@@ -1,0 +1,165 @@
+ERROR - 2024-10-24 01:17:10 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'sinappt1_s4nt1ag0'@'181.59.2.129' (using password: YES) in C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php:186
+Stack trace:
+#0 C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php(186): mysqli->real_connect('108.167.142.9', 'sinappt1_s4nt1a...', Object(SensitiveParameterValue), 'sinappt1_s4nt1a...', 3306, '', 0)
+#1 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\backend\system\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\backend\system\Model.php(919): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\backend\app\Models\Clients\ClientModel.php(16): CodeIgniter\Model->__call('get', Array)
+#6 C:\xampp\htdocs\backend\app\Controllers\Clients\ClientController.php(19): App\Models\Clients\ClientModel->listClients()
+#7 C:\xampp\htdocs\backend\system\CodeIgniter.php(933): App\Controllers\Clients\ClientController->listClients()
+#8 C:\xampp\htdocs\backend\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+#9 C:\xampp\htdocs\backend\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\backend\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\backend\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'181.59.2.129' (using password: YES) in C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\backend\system\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\backend\system\Model.php(919): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\backend\app\Models\Clients\ClientModel.php(16): CodeIgniter\Model->__call('get', Array)
+#5 C:\xampp\htdocs\backend\app\Controllers\Clients\ClientController.php(19): App\Models\Clients\ClientModel->listClients()
+#6 C:\xampp\htdocs\backend\system\CodeIgniter.php(933): App\Controllers\Clients\ClientController->listClients()
+#7 C:\xampp\htdocs\backend\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+#8 C:\xampp\htdocs\backend\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\backend\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\backend\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2024-10-24 01:17:10 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'181.59.2.129' (using password: YES)
+[Method: GET, Route: clients]
+in SYSTEMPATH\Database\BaseConnection.php on line 457.
+ 1 SYSTEMPATH\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `clientes`', [], false)
+ 3 SYSTEMPATH\Model.php(919): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Models\Clients\ClientModel.php(16): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH\Controllers\Clients\ClientController.php(19): App\Models\Clients\ClientModel->listClients()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Clients\ClientController->listClients()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-10-24 01:35:54 --> mysqli_sql_exception: Duplicate entry '27' for key 'PRIMARY' in C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php:308
+Stack trace:
+#0 C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php(308): mysqli->query('INSERT INTO `cl...', 0)
+#1 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(722): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `cl...')
+#2 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(636): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `cl...')
+#3 C:\xampp\htdocs\backend\system\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `cl...', Array, false)
+#4 C:\xampp\htdocs\backend\app\Models\Clients\ClientModel.php(32): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\backend\app\Controllers\Clients\ClientController.php(41): App\Models\Clients\ClientModel->insertClient(Array)
+#6 C:\xampp\htdocs\backend\system\CodeIgniter.php(933): App\Controllers\Clients\ClientController->insertClient()
+#7 C:\xampp\htdocs\backend\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+#8 C:\xampp\htdocs\backend\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\backend\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\backend\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2024-10-24 01:35:54 --> CodeIgniter\Database\Exceptions\DatabaseException: Duplicate entry '27' for key 'PRIMARY'
+[Method: POST, Route: clients/insert]
+in SYSTEMPATH\Database\BaseConnection.php on line 676.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `clientes` (`ID_CLIENTE`, `NOMBRE_CLIENTE`, `NIT`, `TELEFONO`, `DIRECCION`, `INFORMACION`) VALUES (:ID_CLIENTE:, :NOMBRE_CLIENTE:, :NIT:, :TELEFONO:, :DIRECCION:, :INFORMACION:)', [...], false)
+ 2 APPPATH\Models\Clients\ClientModel.php(32): CodeIgniter\Database\BaseBuilder->insert([...])
+ 3 APPPATH\Controllers\Clients\ClientController.php(41): App\Models\Clients\ClientModel->insertClient([...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Clients\ClientController->insertClient()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-24 01:35:54 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Duplicate entry '27' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 313.
+ 1 SYSTEMPATH\Database\BaseConnection.php(722): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `clientes` (`ID_CLIENTE`, `NOMBRE_CLIENTE`, `NIT`, `TELEFONO`, `DIRECCION`, `INFORMACION`) VALUES (27, \'ASasaS\', \'Asa\', \'AsaSas\', \'SAsaS\', \'AsASa\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(636): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `clientes` (`ID_CLIENTE`, `NOMBRE_CLIENTE`, `NIT`, `TELEFONO`, `DIRECCION`, `INFORMACION`) VALUES (27, \'ASasaS\', \'Asa\', \'AsaSas\', \'SAsaS\', \'AsASa\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `clientes` (`ID_CLIENTE`, `NOMBRE_CLIENTE`, `NIT`, `TELEFONO`, `DIRECCION`, `INFORMACION`) VALUES (:ID_CLIENTE:, :NOMBRE_CLIENTE:, :NIT:, :TELEFONO:, :DIRECCION:, :INFORMACION:)', [...], false)
+ 4 APPPATH\Models\Clients\ClientModel.php(32): CodeIgniter\Database\BaseBuilder->insert([...])
+ 5 APPPATH\Controllers\Clients\ClientController.php(41): App\Models\Clients\ClientModel->insertClient([...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Clients\ClientController->insertClient()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-24 01:35:54 --> [Caused by] mysqli_sql_exception: Duplicate entry '27' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 308.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(308): mysqli->query('INSERT INTO `clientes` (`ID_CLIENTE`, `NOMBRE_CLIENTE`, `NIT`, `TELEFONO`, `DIRECCION`, `INFORMACION`) VALUES (27, \'ASasaS\', \'Asa\', \'AsaSas\', \'SAsaS\', \'AsASa\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(722): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `clientes` (`ID_CLIENTE`, `NOMBRE_CLIENTE`, `NIT`, `TELEFONO`, `DIRECCION`, `INFORMACION`) VALUES (27, \'ASasaS\', \'Asa\', \'AsaSas\', \'SAsaS\', \'AsASa\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(636): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `clientes` (`ID_CLIENTE`, `NOMBRE_CLIENTE`, `NIT`, `TELEFONO`, `DIRECCION`, `INFORMACION`) VALUES (27, \'ASasaS\', \'Asa\', \'AsaSas\', \'SAsaS\', \'AsASa\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `clientes` (`ID_CLIENTE`, `NOMBRE_CLIENTE`, `NIT`, `TELEFONO`, `DIRECCION`, `INFORMACION`) VALUES (:ID_CLIENTE:, :NOMBRE_CLIENTE:, :NIT:, :TELEFONO:, :DIRECCION:, :INFORMACION:)', [...], false)
+ 5 APPPATH\Models\Clients\ClientModel.php(32): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 APPPATH\Controllers\Clients\ClientController.php(41): App\Models\Clients\ClientModel->insertClient([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Clients\ClientController->insertClient()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-24 01:54:14 --> ErrorException: Undefined property: stdClass::$ID_CLIENTE
+[Method: POST, Route: clients/insert]
+in APPPATH\Controllers\Clients\ClientController.php on line 34.
+ 1 APPPATH\Controllers\Clients\ClientController.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ID_CLIENTE', 'C:\\xampp\\htdocs\\backend\\app\\Controllers\\Clients\\ClientController.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Clients\ClientController->insertClient()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-10-24 11:28:25 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'sinappt1_s4nt1ag0'@'181.59.148.85' (using password: YES) in C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php:186
+Stack trace:
+#0 C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php(186): mysqli->real_connect('108.167.142.9', 'sinappt1_s4nt1a...', Object(SensitiveParameterValue), 'sinappt1_s4nt1a...', 3306, '', 0)
+#1 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\backend\system\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `cl...', Array, false)
+#4 C:\xampp\htdocs\backend\system\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\backend\system\BaseModel.php(840): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\backend\system\Model.php(791): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\backend\app\Models\Clients\ClientModel.php(31): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\backend\app\Controllers\Clients\ClientController.php(41): App\Models\Clients\ClientModel->insertClient(Array)
+#9 C:\xampp\htdocs\backend\system\CodeIgniter.php(933): App\Controllers\Clients\ClientController->insertClient()
+#10 C:\xampp\htdocs\backend\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+#11 C:\xampp\htdocs\backend\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\backend\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\backend\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'181.59.148.85' (using password: YES) in C:\xampp\htdocs\backend\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\backend\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\backend\system\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `cl...', Array, false)
+#3 C:\xampp\htdocs\backend\system\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+#4 C:\xampp\htdocs\backend\system\BaseModel.php(840): CodeIgniter\Model->doInsert(Array)
+#5 C:\xampp\htdocs\backend\system\Model.php(791): CodeIgniter\BaseModel->insert(Array, true)
+#6 C:\xampp\htdocs\backend\app\Models\Clients\ClientModel.php(31): CodeIgniter\Model->insert(Array)
+#7 C:\xampp\htdocs\backend\app\Controllers\Clients\ClientController.php(41): App\Models\Clients\ClientModel->insertClient(Array)
+#8 C:\xampp\htdocs\backend\system\CodeIgniter.php(933): App\Controllers\Clients\ClientController->insertClient()
+#9 C:\xampp\htdocs\backend\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+#10 C:\xampp\htdocs\backend\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\backend\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\backend\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2024-10-24 11:28:25 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'181.59.148.85' (using password: YES)
+[Method: POST, Route: clients/insert]
+in SYSTEMPATH\Database\BaseConnection.php on line 457.
+ 1 SYSTEMPATH\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(2325): CodeIgniter\Database\BaseConnection->query('INSERT INTO `clientes` (`NOMBRE_CLIENTE`, `NIT`, `TELEFONO`, `DIRECCION`, `INFORMACION`) VALUES (:NOMBRE_CLIENTE:, :NIT:, :TELEFONO:, :DIRECCION:, :INFORMACION:)', [...], false)
+ 3 SYSTEMPATH\Model.php(383): CodeIgniter\Database\BaseBuilder->insert()
+ 4 SYSTEMPATH\BaseModel.php(840): CodeIgniter\Model->doInsert([...])
+ 5 SYSTEMPATH\Model.php(791): CodeIgniter\BaseModel->insert([...], true)
+ 6 APPPATH\Models\Clients\ClientModel.php(31): CodeIgniter\Model->insert([...])
+ 7 APPPATH\Controllers\Clients\ClientController.php(41): App\Models\Clients\ClientModel->insertClient([...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Clients\ClientController->insertClient()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients\ClientController))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
