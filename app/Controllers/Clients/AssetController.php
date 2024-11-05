@@ -20,10 +20,15 @@ class AssetController extends BaseController
         return $this->response->setJSON($assets);
     }
 
-    public function getAssetsByClientId()
+    public function listFreeAssets()
     {
-        $id = $this->request->getJSON('ID_CLIENTE');
-        $data = $this->assetModel->getAssetsByClientId($id);
+        $assets = $this->assetModel->listFreeAssets();
+        return $this->response->setJSON($assets);
+    }
+    public function getAssetsByUserClientId()
+    {
+        $id = $this->request->getJSON('ID_USUARIO_CLIENTE');
+        $data = $this->assetModel->listAssetsByUserClientId($id);
         return $this->response->setJSON($data);
     }
 
@@ -31,12 +36,15 @@ class AssetController extends BaseController
     {
         $request = $this->request->getJSON();
         $data = [
-            'ID_CLIENTE' => $request->ID_CLIENTE,
+            'ID_USUARIO_CLIENTE' => $request->ID_USUARIO,
             'NOMBRE_ACTIVO' => $request->NOMBRE_ACTIVO,
             'CATEGORIA' => $request->CATEGORIA,
+            'MARCA' => $request->MARCA,
+            'REFERENCIA' => $request->REFERENCIA,
             'SERIAL' => $request->SERIAL,
-            'ACCESORIOS' => $request->ACCESORIOS,
-            'INFORMACION' => $request->INFORMACION,
+            'ESTADO' => $request->ESTADO,
+            'NOVEDADES' => $request->NOVEDADES,
+
         ];
         $responseModel = $this->assetModel->insertAsset($data);
         return $this->response->setJSON($responseModel);
@@ -47,12 +55,14 @@ class AssetController extends BaseController
         $request = $this->request->getJSON();
         $data = [
             'ID_ACTIVO' => $request->ID_ACTIVO,
-            'ID_CLIENTE' => $request->ID_CLIENTE,
-            'NOMBRE_ACTIVO' => $request->NOMBRE_ACTIVO,
-            'CATEGORIA' => $request->CATEGORIA,
-            'SERIAL' => $request->SERIAL,
-            'ACCESORIOS' => $request->ACCESORIOS,
-            'INFORMACION' => $request->INFORMACION,
+            'ID_USUARIO_CLIENTE' => $request->ID_USUARIO ?? null,
+            'NOMBRE_ACTIVO' => $request->NOMBRE_ACTIVO ?? null,
+            'CATEGORIA' => $request->CATEGORIA ?? null,
+            'MARCA' => $request->MARCA ?? null,
+            'REFERENCIA' => $request->REFERENCIA ?? null,
+            'SERIAL' => $request->SERIAL ?? null,
+            'ESTADO' => $request->ESTADO ?? null,
+            'NOVEDADES' => $request->NOVEDADES ?? null,
         ];
         $responseModel = $this->assetModel->updateAsset($data);
         return $this->response->setJSON($responseModel);
@@ -67,5 +77,26 @@ class AssetController extends BaseController
         } else {
             return $this->response->setJSON(false);
         }
+    }
+    
+    public function assingUser()
+    {
+        $request = $this->request->getJSON();
+        $data = [
+            'ID_ACTIVO' => $request->ID_ACTIVO,
+            'ID_USUARIO_CLIENTE' => $request->ID_USUARIO_CLIENTE,
+        ];
+        $responseModel = $this->assetModel->assingUser($data);
+        return $this->response->setJSON($responseModel);
+    }
+    public function undessingUser()
+    {
+        $request = $this->request->getJSON();
+        $data = [
+            'ID_ACTIVO' => $request->ID_ACTIVO,
+            'ID_USUARIO_CLIENTE' => null,
+        ];
+        $responseModel = $this->assetModel->undessingUser($data);
+        return $this->response->setJSON($responseModel);
     }
 }
