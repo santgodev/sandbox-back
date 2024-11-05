@@ -42,24 +42,28 @@ $routes->group('clients', ['namespace' => 'App\Controllers\Clients'], function($
     $routes->get('/', 'ClientController::listClients');
     $routes->post('list', 'ClientController::listClientById');
     $routes->post('insert', 'ClientController::insertClient');
-    $routes->put('update', 'ClientController::updateClient');
+    $routes->post('update', 'ClientController::updateClient');
     $routes->post('delete', 'ClientController::deleteClient');
 });
 
-// Group of routes for user clients
-// $routes->group('user-clients', ['namespace' => 'App\Controllers\Clients'], function($routes) {
-//     $routes->get('/', 'UserClientController::list');
-//     $routes->post('list', 'UserClientController::listUserById');
-//     $routes->post('insert', 'UserClientController::insertUser');
-//     $routes->put('update', 'UserClientController::updateUser');
-//     $routes->post('delete', 'UserClientController::deleteUser');
-// });
+$routes->group('clients/users', ['namespace' => 'App\Controllers\Clients'], function($routes) {
+    $routes->get('/', 'UserClientController::userClientList');
+    $routes->post('list', 'UserClientController::userClientGetById');
+    $routes->post('insert', 'UserClientController::userClientInsert');
+    $routes->post('update', 'UserClientController::userClientUpdate');
+    $routes->post('delete', 'UserClientController::userClientDelete');
+});
 
-// Group of routes for client assets
-// $routes->group('client-assets', ['namespace' => 'App\Controllers\Clients'], function($routes) {
-//     $routes->get('/', 'AssetController::list');
-//     $routes->post('list', 'AssetController::listAssetByClientId');
-//     $routes->post('insert', 'AssetController::insertAsset');
-//     $routes->put('update', 'AssetController::updateUser');
-//     $routes->post('delete', 'AssetController::deleteAsset');
-// });
+$routes->group('clients/assets', ['namespace' => 'App\Controllers\Clients'], function($routes) {
+    $routes->get('/', 'AssetController::listAssets');
+    $routes->get('free', 'AssetController::listFreeAssets');
+    $routes->post('listbyuserid', 'AssetController::getAssetsByUserClientId');
+    $routes->post('insert', 'AssetController::insertAsset');
+    $routes->put('update', 'AssetController::updateAsset');
+    $routes->put('assinguser', 'AssetController::assingUser');
+    $routes->put('undessinguser', 'AssetController::undessingUser');
+    $routes->post('delete', 'AssetController::deleteAsset');
+});
+
+
+

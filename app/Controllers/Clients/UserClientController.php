@@ -8,62 +8,66 @@ use App\Models\Clients\UserClientModel;
 class UserClientController extends BaseController
 {
     private $userModel;
-    
+
     public function __construct()
     {
         $this->userModel = new UserClientModel();
     }
 
-    public function listClients()
+    public function userClientList()
     {
-        $clients = $this->userModel->listClients();
-        return $this->response->setJSON($clients);
+        $users = $this->userModel->userClientList();
+        return $this->response->setJSON($users);
     }
 
-    public function getClientById()
+    public function userClientGetById()
     {
-        $id = $this->request->getJSON('ID_CLIENTE');
-        $data = $this->userModel->getClientById($id);
+        $id = $this->request->getJSON('ID_USUARIO_CLIENTE');
+        $data = $this->userModel->userClientGetById($id);
         return $this->response->setJSON($data);
     }
 
-    public function insertClient()
+    public function userClientInsert()
     {
         $request = $this->request->getJSON();
         $data = [
-            'ID_CLIENTE' => null,
-            'NOMBRE_CLIENTE' => $request->NOMBRE_CLIENTE,
-            'NIT' => $request->NIT,
+            'ID_CLIENTE' => $request->ID_CLIENTE, 
+            'NOMBRE' => $request->NOMBRE,
+            'APELLIDO' => $request->APELLIDO,
+            'CARGO' => $request->CARGO,
+            'USUARIO_DOMINIO' => $request->USUARIO_DOMINIO,
+            'CORREO' => $request->CORREO,
+            'CC' => $request->CC,
             'TELEFONO' => $request->TELEFONO,
-            'DIRECCION' => $request->DIRECCION,
-            'INFORMACION' => $request->INFORMACION,
+            'PASSWORD' => $request->PASSWORD,
         ];
-        $responseModel = $this->userModel->insertClient($data);
+        $responseModel = $this->userModel->userClientInsert($data);
         return $this->response->setJSON($responseModel);
     }
 
-    public function updateClient()
+    public function userClientUpdate()
     {
         $request = $this->request->getJSON();
         $data = [
-            'ID_CLIENTE' => null,
-            'NOMBRE_CLIENTE' => $request->NOMBRE_CLIENTE,
-            'NIT' => $request->NIT,
-            'TELEFONO' => $request->TELEFONO,
-            'DIRECCION' => $request->DIRECCION,
-            'INFORMACION' => $request->INFORMACION,
+            'ID_USUARIO_CLIENTE' => $request->ID_USUARIO_CLIENTE, 
+            'ID_CLIENTE'=> $request->ID_CLIENTE,
+            'NOMBRE' => $request->NOMBRE ?? null,
+            'APELLIDO' => $request->APELLIDO ?? null,
+            'CORREO' => $request->CORREO ?? null,
+            'TELEFONO' => $request->TELEFONO ?? null,
+            'CARGO' => $request->CARGO ?? null,
+            'USUARIO_DOMINIO' => $request->USUARIO_DOMINIO ?? null,
+            'CC' => $request->CC ?? null,
+            'PASSWORD' => $request->PASSWORD ?? null,
         ];
-        $responseModel = $this->userModel->updateClient($data);
+        $responseModel = $this->userModel->userClientUpdate($data);
         return $this->response->setJSON($responseModel);
     }
 
-    public function deleteClient()
+    public function userClientDelete()
     {
-        $id = $this->request->getJSON('ID');
-        if ($this->userModel->deleteClient($id)) {
-            return $this->response->setJSON(true);
-        } else {
-            return $this->response->setJSON(false);
-        }
+        $id = $this->request->getJSON('ID_USUARIO_CLIENTE');
+        $responseModel=$this->userModel->userClientDelete($id);
+        return $this->response->setJSON($responseModel);
     }
 }

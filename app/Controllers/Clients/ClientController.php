@@ -49,7 +49,7 @@ class ClientController extends BaseController
             'NOMBRE_CLIENTE' => $request->NOMBRE_CLIENTE ?? null,
             'NIT' => $request->NIT ?? null,
             'TELEFONO' => $request->TELEFONO ?? null,
-            'DIRECCION' => $request->DIRECCION ?? null,
+            'DIRECCION' => $request->DIRECCION ?? null,     
             'INFORMACION' => $request->INFORMACION ?? null,
         ];
         $responseModel = $this->clientModel->updateClient($data);
