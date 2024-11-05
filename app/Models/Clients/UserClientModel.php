@@ -6,98 +6,94 @@ use CodeIgniter\Model;
 
 class UserClientModel extends Model
 {
-    protected $table = 'usuarios_clientes';
-    protected $primaryKey = 'ID';
-    protected $allowedFields = ['NOMBRE', 'APELLIDO', 'CORREO'];
+    protected $table = 'usuarios_clientes'; 
+    protected $primaryKey = 'ID_USUARIO_CLIENTE';
+    protected $allowedFields = ['ID_CLIENTE', 'NOMBRE', 'APELLIDO', 'CORREO', 'TELEFONO', 'ID_ROL']; 
 
-    public function getUserByEmail($email)
+    public function userClientList()
     {
-        $query = $this->db->table('usuario')
-            ->select('usuario.*, rol.DESCRIPCION as ROL_DESCRIPCION')
-            ->join('rol', 'rol.ID_ROL = usuario.ID_ROL', 'left')
-            ->where('usuario.CORREO', $email)
-            ->get();
+        try {
+            $query = $this->select('usuarios_clientes.*, clientes.NOMBRE_CLIENTE EMPRESA')
+                ->join('clientes', 'clientes.ID_CLIENTE = usuarios_clientes.ID_CLIENTE')
+                ->get();
 
-        return $query->getRowArray();
-    }
-
-    public function listUserById($id)
-    {
-        $query = $this->select(['NOMBRE', 'APELLIDO', 'CORREO', 'IMG_URL'])
-            ->where('ID', $id)
-            ->get();
-
-        return $query->getResult();
-    }
-
-    public function listUsers()
-    {
-        $query = $this->select(['ID', 'NOMBRE', 'APELLIDO', 'CORREO', 'TELEFONO', 'NOMBRE_ROL'])
-            ->join('rol', 'usuario.ID_ROL = rol.ID_ROL')
-            ->get();
-
-        return $query->getResult();
-    }
-
-    public function insertUser($data)
-    {
-        $query = $this->db->table('usuario')->insert($data);
-        if ($query) {
-            $userData = $this->db->table('usuario')
-                ->select(['ID', 'NOMBRE', 'APELLIDO', 'CORREO', 'TELEFONO', 'NOMBRE_ROL'])
-                ->join('rol', 'usuario.ID_ROL = rol.ID_ROL')
-                ->where('CORREO', $data['CORREO'])
-                ->orderBy('ID_')
-                ->get()
-                ->getRowArray();
-            return [
-                'user' => $userData
-            ];
-        } else {
-            return ['message' => 'Could not complete the insert'];
+            return $query->getResult();
+        } catch (\Exception $e) {
+            return ['message' => $e->getMessage()];
         }
     }
 
-    public function updateUser($data)
+    public function userClientGetById($id)
     {
-        $query = $this->db->table('usuario')->update($data, ['CORREO' => $data['CORREO']]);
+        try {
+            $query = $this->select('*')
+                ->where('ID_USUARIO_CLIENTE', $id)
+                ->get();
+
+            return $query->getRowArray();
+        } catch (\Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
+    }
+
+    public function userClientInsert($data)
+    {
+        try {
+            $this->db->table('usuarios_clientes')->insert($data); 
+            return $this->userClientList();
+        } catch (\Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
+    }
+
+    public function userClientUpdate($data)
+    {
+        try {
+            $query=$this->db->table('usuarios_clientes')->update($data, ['ID_USUARIO_CLIENTE' => $data['ID_USUARIO_CLIENTE']]); 
+            if($query){
+                return $this->userClientList(); 
+            }
+        } catch (\Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
+    }
+    public function updateClient($data)
+    {
+        $query = $this->db->table('clientes')->update($data, ['ID_CLIENTE' => $data['ID_CLIENTE']]);
 
         if ($query) {
-            $userData = $this->db->table('usuario')
-                ->select("*")
-                ->where('CORREO', $data['CORREO'])
-                ->get()
-                ->getRowArray();
-            return [
-                'message' => 'Update successful',
-                'userData' => $userData
-            ];
+            $clientsData = $this->listClients();
+            return $clientsData;
         } else {
             return ['message' => 'Could not complete the update'];
         }
     }
 
-    public function deleteUser($id)
+    public function userClientDelete($id)
     {
-        $query = $this->select('*')
-            ->where('ID', $id)
-            ->get();
-        $deletedUser = $query->getRowArray();
-        if ($deletedUser) {
-            $this->db->table('deleted_users')->insert($deletedUser);
-            $this->db->table('usuario')->delete(['ID' => $id]);
-            return true;
-        } else {
-            return false;
+        try {
+            $user = $this->userClientGetById($id);
+            if ($user) {
+                $this->delete($id); 
+                return $this->userClientList();
+            } else {
+                return ['message' => 'User not found'];
+            }
+        } catch (\Exception $e) {
+            return ['message' => $e->getMessage()];
         }
     }
 
-    public function listRoles()
+    public function userClientListRoles()
     {
-        $query = $this->db->table('rol')
-            ->select(['ID_ROL', 'NOMBRE_ROL', 'DESCRIPCION'])
-            ->get();
+        try {
+            $query = $this->db->table('rol')
+                ->select(['ID_ROL', 'NOMBRE_ROL', 'DESCRIPCION'])
+                ->get();
 
-        return $query->getResult();
+            return $query->getResult();
+        } catch (\Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
     }
 }
