@@ -30,6 +30,18 @@ class AssetModel extends Model
             return ['message' => $e->getMessage()];
         }
     }
+    public function listAssetsByClientId($id)
+    {
+
+        $query = $this->db->table('activos')            
+            ->select('*')
+            ->join('usuarios_clientes','usuarios_clientes.ID_USUARIO_CLIENTE = activos.ID_USUARIO_CLIENTE')
+            ->join('clientes','clientes.ID_CLIENTE = usuarios_clientes.ID_CLIENTE')
+            ->where('clientes.ID_CLIENTE',$id)
+            ->orderBy('activos.ID_ACTIVO')
+            ->get();
+        return $query->getResultArray();
+    }
   
 
     public function listFreeAssets()

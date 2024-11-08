@@ -31,6 +31,12 @@ class AssetController extends BaseController
         $data = $this->assetModel->listAssetsByUserClientId($id);
         return $this->response->setJSON($data);
     }
+    public function   listAssetsByClientId()
+    {
+        $id=$this->request->getJSON('ID_CLIENTE');
+        $assets = $this->assetModel->listAssetsByClientId($id);
+        return $this->response->setJSON($assets);
+    }
 
     public function insertAsset()
     {
