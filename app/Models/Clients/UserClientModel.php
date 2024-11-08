@@ -6,28 +6,29 @@ use CodeIgniter\Model;
 
 class UserClientModel extends Model
 {
-    protected $table = 'usuarios_clientes'; 
-    protected $primaryKey = 'ID_USUARIO_CLIENTE';
+    protected $table = 'usuarios'; 
+    protected $primaryKey = 'ID_USUARIO';
     protected $allowedFields = ['ID_CLIENTE', 'NOMBRE', 'APELLIDO', 'CORREO', 'TELEFONO', 'ID_ROL']; 
 
     public function userClientList()
     {
         try {
-            $query = $this->select('usuarios_clientes.*, clientes.NOMBRE_CLIENTE EMPRESA')
-                ->join('clientes', 'clientes.ID_CLIENTE = usuarios_clientes.ID_CLIENTE')
+            $query = $this->select('usuarios.ID_USUARIO, usuarios.ID_USUARIO, usuarios.ID_ROL, usuarios.ID_CLIENTE, usuarios.NOMBRE, usuarios.APELLIDO, usuarios.CARGO, usuarios.USUARIO_DOMINIO, usuarios.CORREO, usuarios.CC, usuarios.TELEFONO, clientes.NOMBRE_CLIENTE AS EMPRESA')
+                ->join('clientes', 'clientes.ID_CLIENTE = usuarios.ID_CLIENTE')
                 ->get();
-
+    
             return $query->getResult();
         } catch (\Exception $e) {
             return ['message' => $e->getMessage()];
         }
     }
+    
 
     public function userClientGetById($id)
     {
         try {
             $query = $this->select('*')
-                ->where('ID_USUARIO_CLIENTE', $id)
+                ->where('ID_USUARIO', $id)
                 ->get();
 
             return $query->getRowArray();
@@ -36,10 +37,25 @@ class UserClientModel extends Model
         }
     }
 
+    public function getUserByClientId($id)
+    {
+        try {
+            $query = $this->db->table('usuarios')
+                ->select('usuarios.*,  clientes.NOMBRE_CLIENTE AS EMPRESA')
+                ->join('clientes', 'clientes.ID_CLIENTE = usuarios.ID_CLIENTE')
+                ->where('usuarios.ID_CLIENTE', $id)
+                ->get();
+
+            return $query->getResultArray();
+        } catch (\Exception $e) {
+            return ['message' => $e->getMessage()];
+        }
+    }
+
     public function userClientInsert($data)
     {
         try {
-            $this->db->table('usuarios_clientes')->insert($data); 
+            $this->db->table('usuarios')->insert($data); 
             return $this->userClientList();
         } catch (\Exception $e) {
             return ['message' => $e->getMessage()];
@@ -49,7 +65,7 @@ class UserClientModel extends Model
     public function userClientUpdate($data)
     {
         try {
-            $query=$this->db->table('usuarios_clientes')->update($data, ['ID_USUARIO_CLIENTE' => $data['ID_USUARIO_CLIENTE']]); 
+            $query=$this->db->table('usuarios')->update($data, ['ID_USUARIO' => $data['ID_USUARIO']]); 
             if($query){
                 return $this->userClientList(); 
             }

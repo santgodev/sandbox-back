@@ -22,8 +22,16 @@ class UserClientController extends BaseController
 
     public function userClientGetById()
     {
-        $id = $this->request->getJSON('ID_USUARIO_CLIENTE');
+        $id = $this->request->getJSON('ID_USUARIO');
         $data = $this->userModel->userClientGetById($id);
+        return $this->response->setJSON($data);
+    }
+
+    
+    public function getUserByClientId()
+    {
+        $id = $this->request->getJSON('ID_CLIENTE');
+        $data = $this->userModel->getUserByClientId($id);
         return $this->response->setJSON($data);
     }
 
@@ -39,7 +47,7 @@ class UserClientController extends BaseController
             'CORREO' => $request->CORREO,
             'CC' => $request->CC,
             'TELEFONO' => $request->TELEFONO,
-            'PASSWORD' => $request->PASSWORD,
+            'CONTRASEÑA' => $request->CONTRASEÑA,
         ];
         $responseModel = $this->userModel->userClientInsert($data);
         return $this->response->setJSON($responseModel);
@@ -49,7 +57,7 @@ class UserClientController extends BaseController
     {
         $request = $this->request->getJSON();
         $data = [
-            'ID_USUARIO_CLIENTE' => $request->ID_USUARIO_CLIENTE, 
+            'ID_USUARIO' => $request->ID_USUARIO, 
             'ID_CLIENTE'=> $request->ID_CLIENTE,
             'NOMBRE' => $request->NOMBRE ?? null,
             'APELLIDO' => $request->APELLIDO ?? null,
@@ -58,7 +66,7 @@ class UserClientController extends BaseController
             'CARGO' => $request->CARGO ?? null,
             'USUARIO_DOMINIO' => $request->USUARIO_DOMINIO ?? null,
             'CC' => $request->CC ?? null,
-            'PASSWORD' => $request->PASSWORD ?? null,
+            'CONTRASEÑA' => $request->CONTRASEÑA ?? null,
         ];
         $responseModel = $this->userModel->userClientUpdate($data);
         return $this->response->setJSON($responseModel);
@@ -66,7 +74,7 @@ class UserClientController extends BaseController
 
     public function userClientDelete()
     {
-        $id = $this->request->getJSON('ID_USUARIO_CLIENTE');
+        $id = $this->request->getJSON('ID_USUARIO');
         $responseModel=$this->userModel->userClientDelete($id);
         return $this->response->setJSON($responseModel);
     }
