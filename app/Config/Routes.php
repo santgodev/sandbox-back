@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->post('auth/login', 'Sinapptic\AuthController::login');
+$routes->post('auth/login', 'Auth\AuthController::login');
 
 // Group of routes for modules
 $routes->group('modules', ['namespace' => 'App\Controllers\Sinapptic'], function($routes) {
@@ -49,6 +49,7 @@ $routes->group('clients', ['namespace' => 'App\Controllers\Clients'], function($
 $routes->group('clients/users', ['namespace' => 'App\Controllers\Clients'], function($routes) {
     $routes->get('/', 'UserClientController::userClientList');
     $routes->post('list', 'UserClientController::userClientGetById');
+    $routes->post('listbyclientid', 'UserClientController::getUserByClientId');
     $routes->post('insert', 'UserClientController::userClientInsert');
     $routes->post('update', 'UserClientController::userClientUpdate');
     $routes->post('delete', 'UserClientController::userClientDelete');
@@ -58,6 +59,7 @@ $routes->group('clients/assets', ['namespace' => 'App\Controllers\Clients'], fun
     $routes->get('/', 'AssetController::listAssets');
     $routes->get('free', 'AssetController::listFreeAssets');
     $routes->post('listbyuserid', 'AssetController::getAssetsByUserClientId');
+    $routes->post('listbyclientid', 'AssetController::listAssetsByClientId');
     $routes->post('insert', 'AssetController::insertAsset');
     $routes->put('update', 'AssetController::updateAsset');
     $routes->put('assinguser', 'AssetController::assingUser');
